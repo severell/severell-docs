@@ -5,15 +5,15 @@
 ##### THE BASICS
 * [Routing](/docs/routing)
 * [Middleware](/docs/middleware)
-* [Controllers](/docs/installation)
-* [Requests](/docs/installation)
-* [Responses](/docs/installation)
-* [Views](/docs/installation)
-* [Session](/docs/installation)
+* [Controllers](/docs/controllers)
+* [Requests](/docs/requests)
+* [Responses](/docs/responses)
+* [Views](/docs/views)
+* [Session](/docs/session)
 
 ##### FRONTEND
-* [Mustache Templates](/docs/installation.html)
-* [Compiling Assets](/docs/installation.html)
+* [Mustache Templates](/docs/mustache-templates)
+* [Compiling Assets](/docs/compiling-assets)
 
 ##### DATABASE
 * [Getting Started](/docs/installation.html)
