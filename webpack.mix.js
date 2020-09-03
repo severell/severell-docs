@@ -15,7 +15,7 @@ mix.js('src/main/resources/static/js/app.js', 'build/static/js/app.js')
     .postCss('src/main/resources/static/css/main.css', 'build/static/css/main.css', [
         require('tailwindcss')
     ]);
-
+mix.copyDirectory('src/main/resources/static/images', 'build/static/images')
 // Full API
 // mix.js(src, output);
 // mix.react(src, output); <-- Identical to mix.js(), but registers React Babel compilation.

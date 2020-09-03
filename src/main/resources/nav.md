@@ -1,15 +1,15 @@
 ##### GETTING STARTED
 * [Installation](/docs)
-* [IDE Configuration](/docs/ide-configuration.html)
+* [IDE Configuration](/docs/ide-configuration)
 
 ##### THE BASICS
-* [Routing](/docs/routing.html)
-* [Middleware](/docs/middleware.html)
-* [Controllers](/docs/installation.html)
-* [Requests](/docs/installation.html)
-* [Responses](/docs/installation.html)
-* [Views](/docs/installation.html)
-* [Session](/docs/installation.html)
+* [Routing](/docs/routing)
+* [Middleware](/docs/middleware)
+* [Controllers](/docs/installation)
+* [Requests](/docs/installation)
+* [Responses](/docs/installation)
+* [Views](/docs/installation)
+* [Session](/docs/installation)
 
 ##### FRONTEND
 * [Mustache Templates](/docs/installation.html)
