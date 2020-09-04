@@ -2,6 +2,12 @@
 @tailwind component;
 @tailwind utilities;
 
+@media (min-width: 992px) {
+    .sticky\?lg\:h-\(screen-16\) {
+        height: calc(100vh - 4rem) !important;
+    }
+}
+
 pre[class*=language-] {
     margin: 2em 0 2em !important;
 }
