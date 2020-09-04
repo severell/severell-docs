@@ -16,7 +16,7 @@
 * [Compiling Assets](/docs/compiling-assets)
 
 ##### DATABASE
-* [Getting Started](/docs/installation.html)
-* [Query Beans](/docs/installation.html)
-* [Migrations](/docs/installation.html)
+* [Ebean Documentation](https://ebean.io/docs/)
+* [Models](/docs/models)
+* [Migrations](/docs/migrations)
 

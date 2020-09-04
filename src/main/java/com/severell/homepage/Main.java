@@ -23,7 +23,7 @@ public class Main {
         SiteBuilder builder = new SiteBuilder();
         builder.setSite(site).build().write();
 
-        if(!"build".equals(args[0])) {
+        if(args.length == 0 || !"build".equals(args[0])) {
 
             ResourceHandler h = Handlers.resource(new FileResourceManager(Paths.get("./build").toFile()));
 
