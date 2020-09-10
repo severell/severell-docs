@@ -17,6 +17,10 @@ pre[class*=language-] {
     color: #1190CB !important;
 }
 
+.bg-primary {
+    background-color: #1190CB !important;
+}
+
 html {
     line-height: 1.5;
     font-family: Inter var,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
