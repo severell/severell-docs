@@ -9,7 +9,7 @@ to it's development***.
 ## Requirements
 
 * Maven
-* Java >= 11
+* Java >= 8
 
 The Severell framework uses Maven to install and manage all the dependencies. So, before installing Severell,
 make sure you have maven installed. If you are using an IDE they most likely already have a version of Maven. 
