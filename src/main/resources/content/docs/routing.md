@@ -20,6 +20,10 @@ The router allows you to register routes for the following HTTP verb.
 ```java
 Router.Get(String path, String method)
 Router.Post(String path, String method)
+Router.Put(String path, String method)
+Router.Patch(String path, String method)
+Router.Delete(String path, String method)
+Router.Options(String path, String method)
 ```
 
 ### CSRF Protection

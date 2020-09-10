@@ -44,7 +44,7 @@ import java.util.HashMap;
 
 public class PostController {
 
-    public static void index(Request request, Response response) {
+    public void index(Request request, Response response) {
         response.render("post.mustache", new HashMap<>());
     }
 
