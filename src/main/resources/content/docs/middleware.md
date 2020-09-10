@@ -90,7 +90,7 @@ public class AuthenticationMiddleware implements Middleware {
 
 ### Inject Dependencies In Middleware
 
-Since middleware is resolved via the container you can inject whatever dependencies you need using the `@Inject` annotation. 
+Since middleware is resolved via the container you can inject whatever dependencies you need into the constructor. 
 
 ```java
 package com.example.middleware;
@@ -101,12 +101,13 @@ import com.mitchdennett.framework.http.Request;
 import com.mitchdennett.framework.http.Response;
 import com.mitchdennett.framework.middleware.Middleware;
 
-import javax.inject.Inject;
-
 public class AuthenticationMiddleware implements Middleware {
 
-    @Inject
     private Session session;
+    
+    public AuthenticationMiddleware(Session session) {
+        this.session = session;
+    }
 
     @Override
     public void handle(Request request, Response response, MiddlewareChain middlewareChain) throws Exception {
@@ -119,4 +120,4 @@ public class AuthenticationMiddleware implements Middleware {
 }
 ```
 
-As you can see the `Session` field will get resolved and you can use it within your middleware. 
+As you can see the `Session` parameter will get resolved and you can use it within your middleware. 

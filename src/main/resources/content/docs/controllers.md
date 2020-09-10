@@ -24,7 +24,7 @@ import com.mitchdennett.framework.http.Request;
 
 public class PostController {
 
-    public static void index() {
+    public void index() {
         //Put request handling logic here. 
     }
 
