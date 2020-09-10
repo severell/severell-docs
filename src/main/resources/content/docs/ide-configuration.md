@@ -35,7 +35,7 @@ Once you have imported your Severell project we need to setup a run configuratio
 
 5. Scroll down to the `Before Launch` section. 
 
-6. Press the `+` in the Before Launch section and choose `Run Maven Goal` and enter `io.ebean:ebean-maven-plugin:12.3.6:enhance`
+6. Press the `+` in the Before Launch section and choose `Run Maven Goal` and enter `process-classes`
 
 7. Hit `Ok` and then `Ok` again to close run configurations.
 

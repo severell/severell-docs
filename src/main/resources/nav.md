@@ -19,3 +19,5 @@
 * [Models](/docs/models)
 * [Migrations](/docs/migrations)
 
+##### ADVANCED
+* [Mail](/docs/mail)

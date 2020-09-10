@@ -18,7 +18,7 @@ And of course, you need a version of Java installed on your machine.
 
 ### Installing 
 
-First, you need to download the Severell CLI tool. You can download the binary over here [Severell CLI](https://github.com/mitchdennett/severell-cli/releases/download/0.0.1-alpha/severell-cli)
+First, you need to download the Severell CLI tool. You can download the binary over here [Severell CLI](https://github.com/mitchdennett/severell-cli/releases/download/0.0.1-alpha.1/severell-cli)
 . It has only been tested on MacOS right now. 
 
 Make sure you place the Severell CLI executable somehere on your `$PATH` so that is can be located by your system. Some common locations
