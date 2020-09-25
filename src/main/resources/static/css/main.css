@@ -12,6 +12,9 @@ pre[class*=language-] {
     margin: 2em 0 2em !important;
 }
 
+span.algolia-autocomplete{
+    display: block !important;
+}
 
 .text-primary {
     color: #1190CB !important;
