@@ -3,13 +3,10 @@
 ---
 [TOC]
 
-***Severell is currently in development and I don't recommend using it yet unless you want play around or contribute
-to it's development***.
-
 ## Requirements
 
 * Maven
-* Java >= 8
+* Java >= 11
 
 The Severell framework uses Maven to install and manage all the dependencies. So, before installing Severell,
 make sure you have maven installed. If you are using an IDE they most likely already have a version of Maven. 
@@ -17,7 +14,9 @@ make sure you have maven installed. If you are using an IDE they most likely alr
 And of course, you need a version of Java installed on your machine. 
 
 ### Installing 
+There are two ways to install Severell. You can use our native CLI tool or you can use the Maven archetype command.
 
+#### CLI Tool
 First, you need to download the Severell CLI tool. You can download the binary over here [Severell CLI](https://github.com/mitchdennett/severell-cli/releases/download/0.0.1-alpha.1/severell-cli)
 . It has only been tested on MacOS right now. 
 
@@ -54,5 +53,17 @@ already installed.
 
 ```bash
 severell-cli create blog
+```
+
+#### Maven
+The other way to get started is by using the Maven archetype command.
+```
+mvn -B archetype:generate
+    -DarchetypeGroupId=com.severell 
+    -DarchetypeArtifactId=severell-archetype 
+    -DarchetypeVersion=0.0.1-SNAPSHOT 
+    -DgroupId=***YOUR-GROUPID***
+    -DartifactId=***YOUR-ARTIFACTID***
+    -Dversion=1.0-SNAPSHOT
 ```
 
