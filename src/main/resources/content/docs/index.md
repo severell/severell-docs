@@ -57,7 +57,7 @@ severell-cli create blog
 
 #### Maven
 The other way to get started is by using the Maven archetype command.
-```
+```bash
 mvn -B archetype:generate
     -DarchetypeGroupId=com.severell 
     -DarchetypeArtifactId=severell-archetype 
