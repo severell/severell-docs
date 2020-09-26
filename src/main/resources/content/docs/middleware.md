@@ -121,3 +121,32 @@ public class AuthenticationMiddleware implements Middleware {
 ```
 
 As you can see the `Session` parameter will get resolved and you can use it within your middleware. 
+
+## Route Middleware & Default Middleware
+There are two types of Middleware. Default and Route middleware. Route middleware only runs for the routes you specify.
+On the other hand, default middleware runs on all routes. 
+
+### Default Middleware
+Default middleware run on every route and are defined in `Middleware.java`
+
+```java
+import com.severell.core.middleware.CsrfMiddleware;
+import com.severell.core.middleware.SecureHeadersMiddleware;
+
+public class Middleware {
+
+    public static final Class[] MIDDLEWARE = new Class[]{
+            CsrfMiddleware.class,
+            SecureHeadersMiddleware.class,
+    };
+}
+```
+
+To add a new one simply append the class to the array.
+
+### Route Middleware
+Route middleware only run on the routes you specify. To add middleware to a route you can specify the 
+middleware class on the route.
+```java
+Router.Get("user/:id", WelcomeController.class, "users").middleware(AuthMiddleware.class, ValidateMiddleware.class);
+```
