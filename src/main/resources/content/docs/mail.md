@@ -56,7 +56,8 @@ public void index(Mail mail) {
 ```
 
 ### HTML Emails
-Coming Soon. We are going to be adding support for passing in a Mustache template to send as a HTML email. 
+You are also able to use Mustache templates to send as a HTML email. Simply pass the template
+into the `template` function.
 
 ```java
 public void index(Mail mail) {

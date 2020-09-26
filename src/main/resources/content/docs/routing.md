@@ -58,3 +58,10 @@ Route parameters always begin with `:` followed by a name. You can also have mor
 ```java
 Router.Get("user/:id/posts/:postid", WelcomeController.class, "user");
 ```
+## Adding Route Middleware
+
+To add Middleware to a route you can pass a list of middleware classes to the route. Route middleware is only run on 
+the route you set it on.
+```java
+Router.Get("user/:id", WelcomeController.class, "users").middleware(AuthMiddleware.class, ValidateMiddleware.class);
+```
