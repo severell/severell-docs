@@ -17,14 +17,20 @@ And of course, you need a version of Java installed on your machine.
 There are two ways to install Severell. You can use our native CLI tool or you can use the Maven archetype command.
 
 #### CLI Tool
-First, you need to download the Severell CLI tool. You can download the binary over here [Severell CLI](https://github.com/mitchdennett/severell-cli/releases/download/0.0.1-alpha.1/severell-cli)
-. It has only been tested on MacOS right now. 
+First, you need to download the Severell CLI tool. You can download the binary over here [Severell CLI](https://github.com/severell/severell-cli/releases/tag/0.0.1-alpha.2)
+. Choose the right one for your operating system. Once downloaded rename the file to `severell-cli`.
 
-Make sure you place the Severell CLI executable somehere on your `$PATH` so that is can be located by your system. Some common locations
+##### MacOS
+You'll need to make the program executable run `chmod 550 severell-cli`. You will also need to right-click and open it before trying to run
+it in your terminal. This is to get MacOS to trust the program. 
+
+##### Linux 
+You'll need to make the program executable run `chmod 550 severell-cli`
+
+Make sure you place the Severell CLI executable somewhere on your `$PATH` so that is can be located by your system. Some common locations
 include: 
 
 * macOS/Linux: `/usr/local/bin`
-* Windows: `Not Working Right Now`
 
 Once installed, run `severell-cli` to make sure you have installed it correctly. If installed correctly you should see the following
 output:
