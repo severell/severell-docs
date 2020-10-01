@@ -27,7 +27,7 @@ it in your terminal. This is to get MacOS to trust the program.
 ##### Linux 
 You'll need to make the program executable run `chmod 550 severell-cli`
 
-Make sure you place the Severell CLI executable somewhere on your `$PATH` so that is can be located by your system. Some common locations
+Make sure you place the Severell CLI executable somewhere on your `$PATH` so that it can be located by your system. Some common locations
 include: 
 
 * macOS/Linux: `/usr/local/bin`
