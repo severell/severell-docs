@@ -2,6 +2,14 @@
 ---
 [TOC]
 
+## Routing Overview
+Setting up routes is really simple, but there are a few things you need to know first. Routes in Severell are pre-processed before
+runtime, so we don't have to use runtime reflection. In order for this to happen we make use of the `process-classes` maven
+lifecycle phase. During this phase we take the routes defined in your `Routes.java` and generate a source file called
+`RouteBuilder.java`. If for some reason your routes are not behaving as expected make sure you have run `mvn compile process-classes` after
+editing your routes. See [IDE Configuration](/docs/ide-configuration) to set up your IDE so it always runs `process-classes`
+before running your program. 
+
 ## Basic Routing
 
 All Severell routes are defined in your `Route.java` file located in the `routes` package. This file is automatically
@@ -28,7 +36,7 @@ Router.Options(String path, Class cl, String method)
 
 ### CSRF Protection
 Any request to a `POST` route must include a CSRF token field. Otherwise, that request will be rejected. 
-See more in the [CSRF Documentation](/docs/csrf.html). You can add a CSRF to any HTML form like below.
+See more in the [CSRF Documentation](/docs/csrf). You can add a CSRF to any HTML form like below.
 
 ```html
 <form method="POST" action="/post">
