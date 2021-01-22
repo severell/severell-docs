@@ -9,10 +9,16 @@ request handling logic into a single class allowing you to organize your code in
 
 ## Basic Controller
 
-To create a controller you can use the `severell-cli make:controller` command. 
+#### Start CLI Tool
+First you need to start the Severell CLI tool by running:
+```bash
+mvn severell:cli
+```
+
+To create a controller you can use the `make:controller` command. 
 
 ```bash
-severell-cli make:controller PostController
+make:controller PostController
 ``` 
 
 This will create a controller called `PostController` in your `controller` package. 
@@ -39,7 +45,7 @@ into your controller methods. A common use case for this is to get the `Request`
 ```java
 package com.example.controller;
 
-import com.mitchdennett.framework.http.Request;
+import com.severell.core.http.Request;
 import java.util.HashMap;
 
 public class PostController {

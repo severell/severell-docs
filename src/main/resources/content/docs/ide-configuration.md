@@ -6,7 +6,7 @@ If you plan on using an IDE there are a few configurations that are useful when 
 
 ## IntelliJ (2020.2)
 
-This guide is written using `IntelliJ 2020.2` and my differ for previous versions
+This guide is written using `IntelliJ 2020.2` and may differ for different versions
 
 ### Importing Severell Project
 
@@ -29,7 +29,7 @@ Once you have imported your Severell project we need to setup a run configuratio
 
 2. Press the `+` to add a new run configuration.
 
-3. Choose Application in the dropdow that appears.
+3. Choose Application in the dropdown that appears.
 
 4. Give your run configuration a name and set the main class to `App.java`
 

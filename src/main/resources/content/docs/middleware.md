@@ -11,28 +11,21 @@ You can write additional middleware as needed such as a logging middleware that 
 
 ## Defining Middleware
 
-To create your own middleware you can use the command `severell-cli make:middleware`.
-
-```bash
-severell-cli make:middleware LogRequest
-```
-
-This will create a new class called `LogRequestMiddleware` and place it in your middleware package. 
-This middleware is going to log all incoming requests to the server.
+To create your own middleware you can create your own class that implements Middleware. 
 
 ```java
 package com.example.middleware;
 
-import com.mitchdennett.framework.http.MiddlewareChain;
-import com.mitchdennett.framework.http.Request;
-import com.mitchdennett.framework.http.Response;
-import com.mitchdennett.framework.middleware.Middleware;
+import com.severell.core.http.MiddlewareChain;
+import com.severell.core.http.Request;
+import com.severell.core.http.Response;
+import com.severell.core.middleware.Middleware;
 
 public class AuthenticationMiddleware implements Middleware {
 
     @Override
     public void handle(Request request, Response response, MiddlewareChain middlewareChain) throws Exception {
-        System.out.println("Incoming Request...");
+        System.out.println("Incoming request...");
         middlewareChain.next();
     }
 }
@@ -48,10 +41,10 @@ You can have middleware that runs before or after a request. For example, to hav
 ```java
 package com.example.middleware;
 
-import com.mitchdennett.framework.http.MiddlewareChain;
-import com.mitchdennett.framework.http.Request;
-import com.mitchdennett.framework.http.Response;
-import com.mitchdennett.framework.middleware.Middleware;
+import com.severell.core.http.MiddlewareChain;
+import com.severell.core.http.Request;
+import com.severell.core.http.Response;
+import com.severell.core.middleware.Middleware;
 
 public class AuthenticationMiddleware implements Middleware {
 
@@ -71,10 +64,10 @@ To have code execute after the request you define it like so.
 ```java
 package com.example.middleware;
 
-import com.mitchdennett.framework.http.MiddlewareChain;
-import com.mitchdennett.framework.http.Request;
-import com.mitchdennett.framework.http.Response;
-import com.mitchdennett.framework.middleware.Middleware;
+import com.severell.core.http.MiddlewareChain;
+import com.severell.core.http.Request;
+import com.severell.core.http.Response;
+import com.severell.core.middleware.Middleware;
 
 public class AuthenticationMiddleware implements Middleware {
 
@@ -95,11 +88,11 @@ Since middleware is resolved via the container you can inject whatever dependenc
 ```java
 package com.example.middleware;
 
-import com.mitchdennett.framework.drivers.Session;
-import com.mitchdennett.framework.http.MiddlewareChain;
-import com.mitchdennett.framework.http.Request;
-import com.mitchdennett.framework.http.Response;
-import com.mitchdennett.framework.middleware.Middleware;
+import com.severell.core.drivers.Session;
+import com.severell.core.http.MiddlewareChain;
+import com.severell.core.http.Request;
+import com.severell.core.http.Response;
+import com.severell.core.middleware.Middleware;
 
 public class AuthenticationMiddleware implements Middleware {
 

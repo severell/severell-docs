@@ -7,10 +7,17 @@ Migrations allow you to easily create and share your database schema with others
 easy to keep your database structure in sync. Think of it like version control for you database schema.
 
 ## Creating a Migration
-To create migration you can use the `severell-cli` tool to easy scaffold one. 
+To create migration you can use the `severell-cli` tool to easy scaffold one. First to access the CLI tool you need
+to run 
 
 ```bash
-severell-cli make:migration create_posts_table -c posts
+mvn severell:cli
+```
+
+This will start the Severell cli tool and from there you can create your first migration.
+
+```bash
+make:migration create_posts_table -c posts
 ```
 The `-c` option means you want to create a new table called `posts` instead of modifying an existing 
 table. Use the `-t` option to modify a table.
@@ -23,9 +30,9 @@ Migrations are stored in out `db` folder in the root of your project. They conta
 ```java
 package migrations;
 
-import com.mitchdennett.framework.database.migrations.Blueprint;
-import com.mitchdennett.framework.database.migrations.MigrationException;
-import com.mitchdennett.framework.database.migrations.Schema;
+import com.severell.core.database.migrations.Blueprint;
+import com.severell.core.database.migrations.MigrationException;
+import com.severell.core.database.migrations.Schema;
 
 public class CreateUsersTable {
 
@@ -49,9 +56,9 @@ public class CreateUsersTable {
 
 ## Running Migrations
 
-To run migrations you can use the following command.
+To run migrations you can use the following command in the Severell cli tool.
 ```bash
-severell-cli migrate
+migrate
 ```
 Since migrations only run one time the next time you run `severell-cli migrate` it will not run the same migrations again.
 It will only run all outstanding migrations. 
@@ -60,10 +67,10 @@ It will only run all outstanding migrations.
 
 If you need to rollback your last migration you can use the `migrate:rollback` command.
 ```bash
-severell-cli migrate:rollback
+migrate:rollback
 ```
 This will rollback your last migration run. So it could include a number of migrations.
 If you want to rollback all your migrations you can use the `migrate:reset` command.
 ```bash
-severell-cli migrate:reset
+migrate:reset
 ``` 
