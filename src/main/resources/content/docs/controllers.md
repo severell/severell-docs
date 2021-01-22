@@ -26,7 +26,7 @@ This will create a controller called `PostController` in your `controller` packa
 ```java
 package com.example.controller;
 
-import com.mitchdennett.framework.http.Request;
+import com.severell.core.http.Request;
 
 public class PostController {
 
