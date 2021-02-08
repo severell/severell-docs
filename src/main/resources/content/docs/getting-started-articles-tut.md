@@ -32,15 +32,10 @@ Once you have filled that all out click `Generate`.
 
 Extract the contents of the downloaded zip into a location you'll remember. 
 
-#### Installing SQLite
+#### Installing Postgresql
 
-You will also need an installation of the SQLite3 database. Many popular UNIX-like OSes ship with an acceptable version of SQLite3. Others can find installation instructions at the [SQLite3 website](https://www.sqlite.org/index.html).
+You will also need an installation of the Postgres database. You can find installation instructions at the [Postgresql website](https://www.postgresql.org/download/).
 
-Verify that it is correctly installed and in your load PATH:
-
-```bash
-$ sqlite3 --version
-```
 
 #### Installing Node.js and Npm
 
@@ -143,6 +138,19 @@ HashMap.
 Now lets start our server again with `mvn clean compile process-classes exec:java`.
 
 If you head over to `localhost:8009/posts` you should see our "Posts" header.
+
+#### Connect to DB
+
+Before we can go ahead and create the Posts table we need to set up our .env file with our database connection
+properties. Our `.env` file is located at `src/main/resources`. Edit the following properties with your database 
+information.
+
+```text
+DB_DRIVER=org.postgresql.Driver
+DB_CONNSTRING=jdbc:postgresql://localhost:5432/postgres
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+```
 
 #### Create Posts Table
 
@@ -305,6 +313,3 @@ Start your server again with `mvn clean compile process-classes exec:java` and t
 on one of your posts. You should see something like this.
 
 ![Post](/static/images/post.png)
-
-
-
