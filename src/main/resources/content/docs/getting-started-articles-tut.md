@@ -201,6 +201,7 @@ public class m_2021_02_08_085044_create_posts {
     public static void up() throws MigrationException {
         Schema.create("posts", (Blueprint table) -> {
             table.id();
+            table.primary("id");
             table.string("title");
             table.text("body");
             table.timestamps();
@@ -313,3 +314,50 @@ Start your server again with `mvn clean compile process-classes exec:java` and t
 on one of your posts. You should see something like this.
 
 ![Post](/static/images/post.png)
+
+### Creating A New Post
+
+Now that we are able to view a list of posts and view an individual post our next step is to create a new article. The first 
+step is to create two new route in our routes file. 
+
+```java
+Router.Get("/new/posts", PostsController.class, "newView");
+Router.Post("/new/posts", PostsController.class, "create");
+```
+
+Next we need to add our controller methods `create` and `newView`:
+
+```java
+public void newView(Response response, Request request) throws IOException, ViewException {
+    response.render("create.mustache", new HashMap<>());
+}
+
+public void create(Response response, Request request) throws IOException, ViewException {
+    Post post = new Post();
+    post.setBody(request.input("body"));
+    post.setTitle(request.input("title"));
+    post.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
+    post.save();
+
+    response.redirect("/posts/" + post.getId());
+}
+```
+Finally we need to create our view to gather input from the user. Create a new view called `create.mustache`.
+
+```html
+<h1>Add Post</h1>
+<form action="/new/posts" method="POST">
+    {{{csrf}}}
+    <div>
+        <label>Title</label>
+        <input type="text" name="title"/>
+    </div>
+    <div>
+        <label>Body</label>
+        <input type="text" name="body"/>
+    </div>
+    <div>
+    <input type="submit">
+    </div>
+</form>
+```
