@@ -32,10 +32,16 @@ Once you have filled that all out click `Generate`.
 
 Extract the contents of the downloaded zip into a location you'll remember. 
 
-#### Installing Postgresql
+#### Installing Docker
 
-You will also need an installation of the Postgres database. You can find installation instructions at the [Postgresql website](https://www.postgresql.org/download/).
+You will also need to have Docker installed on your local machine. 
 
+Find the installation instructions at the [Docker](https://docs.docker.com/get-docker/) website and verify it's installed
+correctly with the following command
+
+```bash
+$ docker --verison
+```
 
 #### Installing Node.js and Npm
 
@@ -78,13 +84,8 @@ Visit `localhost:8009` and you should see the following:
 
 ### Displaying A List Of Posts
 
-Our next step is to add a new route into our application to display our blog posts. In order to display a blog post
-we will need to add a route, add a controller and create a view. First let's add our route. In our `routes/routes.java`
-file add the following route.
-
-```java
-router.Get("/posts", PostsController.class, "index");
-```
+In order to display a blog post  we will need to add a route, add a controller and create a view. First let's add our route. 
+First let's create a new controller file. 
 
 #### Create Controller For Posts
 
@@ -116,6 +117,33 @@ public class PostsController {
 }
 ```
 
+#### Our First Route
+
+In order to actually hit out controller file we need to add a route to our application. To add a route we simply annotatie
+our controller method with:
+
+```java
+@Route(path = "/posts", method = HttpMethod.GET)
+```
+
+Your controller file should look something like this:
+
+```java
+package com.example.helloworld.controller;
+
+import com.severell.core.http.Response;
+import com.severell.core.http.Route;
+import java.io.IOException;
+
+public class PostsController {
+    
+    @Route(path = "/posts", method = HttpMethod.GET)
+    public void index(Response response) throws IOException {
+      
+    }
+}
+```
+
 #### Create View For Posts
 
 In order to display something in the browser we need to create view. Our view files are located in 
@@ -126,7 +154,7 @@ HTML in the file
 <h1>Posts</h1>
 ```
 
-Finally we need to tell our controller file to render this view. So, in `controller/PostsController.java` add the
+Finally, we need to tell our controller file to render this view. So, in `controller/PostsController.java` add the
 following code.
 
 ```java
@@ -141,13 +169,38 @@ If you head over to `localhost:8009/posts` you should see our "Posts" header.
 
 #### Connect to DB
 
-Before we can go ahead and create the Posts table we need to set up our .env file with our database connection
+Before we can go ahead and create the Posts table we need to set up our database. Severell comes with an easy way
+to start up a dev database. From the root of your project run the following command:
+
+For MacOs or Linux
+```shell
+$ ./bin/db start postgres
+```
+
+For windows
+```shell
+$ ./bin/db.bat start postgres
+```
+
+This start a dev database in a docker container. To stop the database once we are done run the following command
+
+For MacOs or Linux
+```shell
+$ ./bin/db stop postgres
+```
+
+For Windows
+```shell
+$ ./bin/db.bat stop postgres
+```
+
+Next we need to setup our .env file with our database connection
 properties. Our `.env` file is located at `src/main/resources`. Edit the following properties with your database 
 information.
 
 ```text
 DB_DRIVER=org.postgresql.Driver
-DB_CONNSTRING=jdbc:postgresql://localhost:5432/postgres
+DB_CONNSTRING=jdbc:postgresql://localhost:5555/testdb
 DB_USERNAME=postgres
 DB_PASSWORD=postgres
 ```
@@ -270,17 +323,11 @@ you should see something like this:
 ### Display a Single Post
 
 Now that we have a list of our Posts displaying it times to be able to view a single post and read the contents.
-The first thing we need to do is create a route for viewing the single post. In our `routes/Routes.java` add the following
-route just under your other Posts routes.
-
-```java
-Router.Get("/posts/:id", PostsController.class, "view");
-```
-
-Now we need to add a controller method for that route. In `controller/PostsController.java` add the following method
+The first thing we need to do is create a route for viewing the single post. In `controller/PostsController.java` add the following method
 to retrieve and display a single post.
 
 ```java
+@Route(path="/posts/:id", method = HttpMethod.GET)
 public void view(Response response, Request request) throws IOException, ViewException {
     Post post = new QPost().where().id.eq(Integer.parseInt(request.param("id"))).findOne();
     HashMap<String, Object> map = new HashMap<String, Object>();
@@ -290,7 +337,7 @@ public void view(Response response, Request request) throws IOException, ViewExc
 }
 ```
 
-Now lets create a view for a single post. Create `post.mustache` in `src/main/resources/templates` and add the following
+Now let's create a view for a single post. Create `post.mustache` in `src/main/resources/templates` and add the following
 code.
 
 ```html
@@ -317,32 +364,25 @@ on one of your posts. You should see something like this.
 
 ### Creating A New Post
 
-Now that we are able to view a list of posts and view an individual post our next step is to create a new article. The first 
-step is to create two new route in our routes file. 
+Now that we are able to view a list of posts and view an individual post our next step is to add our controller methods `create` and `newView`:
 
 ```java
-Router.Get("/new/posts", PostsController.class, "newView");
-Router.Post("/new/posts", PostsController.class, "create");
-```
-
-Next we need to add our controller methods `create` and `newView`:
-
-```java
+@Route(path="/new/posts", method = HttpMethod.GET)
 public void newView(Response response, Request request) throws IOException, ViewException {
     response.render("create.mustache", new HashMap<>());
 }
 
+@Route(path="/new/posts", method = HttpMethod.POST)
 public void create(Response response, Request request) throws IOException, ViewException {
     Post post = new Post();
     post.setBody(request.input("body"));
     post.setTitle(request.input("title"));
-    post.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
     post.save();
 
     response.redirect("/posts/" + post.getId());
 }
 ```
-Finally we need to create our view to gather input from the user. Create a new view called `create.mustache`.
+Finally, we need to create our view to gather input from the user. Create a new view called `create.mustache`.
 
 ```html
 <h1>Add Post</h1>
@@ -360,4 +400,18 @@ Finally we need to create our view to gather input from the user. Create a new v
     <input type="submit">
     </div>
 </form>
+```
+
+### Deleting A Post
+
+Deleting a post is a simple process that requires just one route and one method in your controller file. So let's 
+create that route. In your controller add the following code.
+
+```java
+@Route(path ="/posts/:id/delete", method=HttpMethod.DELETE)
+public void delete(Response response, Request request) throws IOException {
+    Post post = new QPost().where().id.eq(Integer.parseInt(request.param("id"))).findOne();
+    post.delete();
+    response.redirect("/posts");
+}
 ```
