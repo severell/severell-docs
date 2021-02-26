@@ -123,23 +123,28 @@ On the other hand, default middleware runs on all routes.
 Default middleware run on every route and are defined in `Middleware.java`
 
 ```java
+import com.severell.core.http.MiddlewareInclude;
 import com.severell.core.middleware.CsrfMiddleware;
 import com.severell.core.middleware.SecureHeadersMiddleware;
+import com.severell.core.middleware.SessionMiddleware;
 
+@MiddlewareInclude
 public class Middleware {
 
-    public static final Class[] MIDDLEWARE = new Class[]{
-            CsrfMiddleware.class,
-            SecureHeadersMiddleware.class,
-    };
+    SessionMiddleware sessionMiddleware;
+
+    CsrfMiddleware csrfMiddleware;
+
+    SecureHeadersMiddleware secureHeadersMiddleware;
 }
+
 ```
 
 To add a new one simply append the class to the array.
 
 ### Route Middleware
-Route middleware only run on the routes you specify. To add middleware to a route you can specify the 
-middleware class on the route.
+Route middleware only run on the routes you specify. To add middleware to a route you add the `@Middleware` annotation
+to your controller method.
 ```java
-Router.Get("user/:id", WelcomeController.class, "users").middleware(AuthMiddleware.class, ValidateMiddleware.class);
+@Middleware({AuthenticationMiddleware.class, ValidateMiddlware.class})
 ```

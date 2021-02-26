@@ -343,6 +343,7 @@ code.
 ```html
 <h1>{{post.title}}</h1>
 <div>{{post.body}}</div>
+<a href="/posts">View All Posts</a>
 ```
 
 Finally, we need to edit our `posts.mustache` view to be able to navigate to each individual post. Update that view with
@@ -386,6 +387,7 @@ Finally, we need to create our view to gather input from the user. Create a new 
 
 ```html
 <h1>Add Post</h1>
+<a href="/posts">View All Posts</a>
 <form action="/new/posts" method="POST">
     {{{csrf}}}
     <div>
@@ -402,6 +404,12 @@ Finally, we need to create our view to gather input from the user. Create a new 
 </form>
 ```
 
+Add the following to the bottom of your `posts.mustache`:
+
+```html
+<a href="/new/posts">New Post</a>
+```
+
 ### Deleting A Post
 
 Deleting a post is a simple process that requires just one route and one method in your controller file. So let's 
@@ -414,4 +422,10 @@ public void delete(Response response, Request request) throws IOException {
     post.delete();
     response.redirect("/posts");
 }
+```
+
+And finally all you need to do is add the following snipped to the bottom of your `post.mustache`:
+
+```html
+<a href="/posts/{{ post.id }}/delete"> Delete </a>
 ```

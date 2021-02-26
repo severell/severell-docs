@@ -2,23 +2,21 @@
 ---
 [TOC]
 
-## Routing Overview
-Setting up routes is really simple, but there are a few things you need to know first. Routes in Severell are pre-processed before
-runtime, so we don't have to use runtime reflection. In order for this to happen we make use of the `process-classes` maven
-lifecycle phase. During this phase we take the routes defined in your `Routes.java` and generate a source file called
-`RouteBuilder.java`. If for some reason your routes are not behaving as expected make sure you have run `mvn compile process-classes` after
-editing your routes. See [IDE Configuration](/docs/ide-configuration) to set up your IDE so it always runs `process-classes`
-before running your program. 
-
 ## Basic Routing
 
-All Severell routes are defined in your `Route.java` file located in the `routes` package. This file is automatically
-loaded by the framework at startup. You can attach middleware to any of these routes as well.
-
-Once you have defined a route you can access it by navigating in your browser to `http://localhost:8009/user`.
+All Severell routes are defined by annotating your controller methods with the following annotation.
 
 ```java
-Router.Get("/user", WelcomeController.class, "user");
+@Route(path = "/", method = HttpMethod.GET);
+```
+
+So a typical controller file will look something like this. 
+
+```java
+    @Route(path = "/", method = HttpMethod.GET)
+    public void index(Request request, Response resp) throws IOException, ViewException {
+
+    }
 ```
 
 ### Available Router Methods
@@ -26,12 +24,12 @@ Router.Get("/user", WelcomeController.class, "user");
 The router allows you to register routes for the following HTTP verb.
 
 ```java
-Router.Get(String path, Class cl, String method)
-Router.Post(String path, Class cl, String method)
-Router.Put(String path, Class cl, String method)
-Router.Patch(String path, Class cl, String method)
-Router.Delete(String path, Class cl, String method)
-Router.Options(String path, Class cl, String method)
+GET
+POST
+PUT
+PATCH
+OPTIONS
+DELETE
 ```
 
 ### CSRF Protection
@@ -51,7 +49,7 @@ Oftentimes you need to capture part of the URI within your route. For example, y
 You can do that as follows.
 
 ```java
-Router.Get("user/:id", WelcomeController.class, "user");
+@Route(path = "/user/:id", method = HttpMethod.GET)
 ``` 
 
 You now have access to that parameter from within your controller. You can consume that as follows.
@@ -64,12 +62,13 @@ public static void user(Request request) {
 Route parameters always begin with `:` followed by a name. You can also have more than one route parameter in a route.
 
 ```java
-Router.Get("user/:id/posts/:postid", WelcomeController.class, "user");
+@Route(path = "/user/:id/posts/:postid", method = HttpMethod.GET)
 ```
 ## Adding Route Middleware
 
-To add Middleware to a route you can pass a list of middleware classes to the route. Route middleware is only run on 
+To add Middleware to a route you can another annotation to your method. Route middleware is only run on 
 the route you set it on.
 ```java
-Router.Get("user/:id", WelcomeController.class, "users").middleware(AuthMiddleware.class, ValidateMiddleware.class);
+@Route(path = "/user/:id", method = HttpMethod.GET)
+@Middleware({AuthenticationMiddleware.class, ValidateMiddlware.class})
 ```
