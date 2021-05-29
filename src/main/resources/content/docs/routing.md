@@ -38,7 +38,7 @@ See more in the [CSRF Documentation](/docs/csrf). You can add a CSRF to any HTML
 
 ```html
 <form method="POST" action="/post">
-    {{#csrf}}
+    @tag.csrf(token = csrf)
     ...
 </form>
 ```

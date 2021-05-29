@@ -5,7 +5,7 @@
 ## Introduction
 
 Sessions provide a way to store information about a user across multiple requests. Currently,
-we only support `JSESSION` but more options are coming. 
+we support memory based sessions and Redis backed session but more options are coming. 
 
 ## Using The Session
 

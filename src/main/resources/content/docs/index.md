@@ -25,7 +25,7 @@ The other way to get started is by using the Maven archetype command.
 mvn -B archetype:generate
     -DarchetypeGroupId=com.severell 
     -DarchetypeArtifactId=severell-archetype 
-    -DarchetypeVersion=0.0.1 
+    -DarchetypeVersion=0.0.2 
     -DgroupId=***YOUR-GROUPID***
     -DartifactId=***YOUR-ARTIFACTID***
     -Dversion=1.0-SNAPSHOT
