@@ -11,7 +11,7 @@
 * [Session](/docs/session)
 
 ##### FRONTEND
-* [Mustache Templates](/docs/mustache-templates)
+* [JTE Templates](/docs/jte-templates)
 * [Compiling Assets](/docs/compiling-assets)
 
 ##### DATABASE
